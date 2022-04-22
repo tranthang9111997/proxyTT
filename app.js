@@ -10,17 +10,27 @@ const cron=require("node-cron");
 var usersRouter = require('./routes/api');
 var usersRouter2 = require('./routes/proxies');
 var http = require('http');
-//connect();
+var MongoClient = mongodb.MongoClient;
+
+connect();
 // app.use(function (req, res, next) {
 //     next(createError(404));
 // });
 function connect() {
     var db = "mongodb://127.0.0.1:27017/sockserver";
-    mongoose.connect(db, { useUnifiedTopology: true, useNewUrlParser: true });
-    const connection = mongoose.connection;
-    connection.once("open", function () {
-        console.log("MongoDB database connection established successfully");
-    });
+    MongoClient.connect(db, function (err, db) {
+        if (err) {
+          console.log('Unable to connect to the mongoDB server. Error:', err);
+        } else {
+          //HURRAY!! We are connected. :)
+          console.log('Connection established to', db);
+      
+          // do some work here with the database.
+      
+          //Close connection
+          //db.close();
+        }
+      });
 
 }
 
