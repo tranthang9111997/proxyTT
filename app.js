@@ -12,11 +12,11 @@ var usersRouter2 = require('./routes/proxies');
 var http = require('http');
 var MongoClient = mongoose.MongoClient;
 
-connect();
+connect1();
 // app.use(function (req, res, next) {
 //     next(createError(404));
 // });
-function connect() {
+function connect1() {
     var db = "mongodb://127.0.0.1:27017/sockserver";
     MongoClient.connect(db, function (err, db) {
         if (err) {
