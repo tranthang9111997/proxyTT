@@ -10,7 +10,7 @@ const cron=require("node-cron");
 var usersRouter = require('./routes/api');
 var usersRouter2 = require('./routes/proxies');
 var http = require('http');
-var MongoClient = mongodb.MongoClient;
+var MongoClient = mongoose.MongoClient;
 
 connect();
 // app.use(function (req, res, next) {
