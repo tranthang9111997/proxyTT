@@ -51,6 +51,6 @@ function request(){
     response.pipe(process.stdout);
 });
 }
-cron.schedule("*/1 * * * *",function(){
-    request();
-  })
+// cron.schedule("*/1 * * * *",function(){
+//     //request();
+//   })
