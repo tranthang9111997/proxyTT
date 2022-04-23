@@ -11,16 +11,16 @@ var usersRouter = require('./routes/api');
 var usersRouter2 = require('./routes/proxies');
 var http = require('http');
 
-var db ="mongodb://localhost:27017/sockserver";
+var db ="mongodb://127.0.0.1:27017/sockserver";
 mongoose.connect(db, { useUnifiedTopology: true, useNewUrlParser: true });
 const connection = mongoose.connection; 
 connection.once("open", function() {
   console.log("MongoDB database connection established successfully");
 });
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-    next(createError(404));
-  });
+// app.use(function(req, res, next) {
+//     next(createError(404));
+//   });
  app.use(logger('dev'));
  app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

@@ -8,7 +8,7 @@ const port_main=require("../model/port_custom");
 const ProxyChain = require('proxy-chain');
 const kill = require('kill-port');
 var net = require('net');
-
+var http = require('http');
 const proxyTypeList = ["auth","none","custom"];
 
 router.get("/", async(req,res) => {
@@ -104,6 +104,13 @@ function createProxy(proxy,port){
     console.log(`Request ${request.url} failed`);
     console.error(error);
   });
+}
+function request(){
+  http.get('http://localhost:8000/proxies/reloadcustom?type=custom', function(response) {
+  console.log('Status:', response.statusCode);
+  console.log('Headers: ', response.headers);
+  response.pipe(process.stdout);
+});
 }
 router.loadProxies = async function loadProxies(proxies){
 
