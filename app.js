@@ -11,7 +11,8 @@ var usersRouter = require('./routes/api');
 var usersRouter2 = require('./routes/proxies');
 var http = require('http');
 
-var db ="mongodb://127.0.0.1:27017/sockserver";
+//var db ="mongodb://127.0.0.1:27017/sockserver";
+var db ="mongodb://localhost:27017/sockserver";
 mongoose.connect(db, { useUnifiedTopology: true, useNewUrlParser: true });
 const connection = mongoose.connection; 
 connection.once("open", function() {
@@ -40,6 +41,7 @@ app.listen(port, async () => {
    // await proxiesRouter.loadProxies(proxies);
     
     console.log(`Listening to requests on http://localhost:${port}`);
+
 });
 function request(){
     http.get('http://localhost:8000/proxies/reloadcustom?type=custom', function(response) {
