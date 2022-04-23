@@ -18,7 +18,7 @@ connect1();
 //     next(createError(404));
 // });
 function connect1() {
-    var db = "mongodb://127.0.0.1:27017/sockserver";
+    var db = "mongodb://localhost:27017/sockserver";
     MongoClient.connect(db, function (err, db) {
         if (err) {
           console.log('Unable to connect to the mongoDB server. Error:', err);
