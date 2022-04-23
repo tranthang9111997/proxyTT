@@ -13,28 +13,16 @@ var usersRouter2 = require('./routes/proxies');
 var http = require('http');
 var MongoClient = mongodb.MongoClient;
 
-connect1();
-// app.use(function (req, res, next) {
-//     next(createError(404));
-// });
-function connect1() {
-    var db = "mongodb://localhost:27017/sockserver";
-    MongoClient.connect(db, function (err, db) {
-        if (err) {
-          console.log('Unable to connect to the mongoDB server. Error:', err);
-        } else {
-          //HURRAY!! We are connected. :)
-          console.log('Connection established to', db);
-      
-          // do some work here with the database.
-      
-          //Close connection
-          //db.close();
-        }
-      });
-
-}
-
+var db ="mongodb://localhost:27017/sockserver";
+mongoose.connect(db, { useUnifiedTopology: true, useNewUrlParser: true });
+const connection = mongoose.connection; 
+connection.once("open", function() {
+  console.log("MongoDB database connection established successfully");
+});
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+    next(createError(404));
+  });
  app.use(logger('dev'));
  app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
